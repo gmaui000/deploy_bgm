@@ -9,10 +9,10 @@ services:
     environment:
       ENV: production                       # 运行环境
       DEBUG: 'False'                        # 调试模式
-      SERVER_NAME: 'bgm.cowarobot1.cn:40100'  # 服务名（不能用 IP，请自行添加本地 hosts，可以解析到本地或云服务器 IP）
+      SERVER_NAME: 'bgm.cowarobot.com:40100' # 服务名（不能用 IP，请自行添加本地 hosts，可以解析到本地或云服务器 IP）
       APPLICATION_NAME: Flask File Server   # 应用名称
-      LOGIN_USERNAME: cowa                 # 默认登录账号
-      LOGIN_PASSWORD: cowa123                # 默认登录密码
+      LOGIN_USERNAME: cowa                  # 默认登录账号
+      LOGIN_PASSWORD: cowa123               # 默认登录密码
       SECRET_KEY: UAV2tFWAuhBRjZEDERAA      # 用于 Cookie 签名，防篡改（默认值为随机字符串，建议为固定值，否则每次重启服务都需要重新登录）
       PERMANENT_SESSION_LIFETIME: 30        # 会话过期时间（天）
     volumes:
@@ -26,7 +26,7 @@ services:
       flask:
         ipv4_address: 172.168.40.2
     extra_hosts:
-      - "bgm.cowarobot1.cn:127.0.0.1"         # docker 内部的域名解析，总是解析到 127.0.0.1 即可
+      - "bgm.cowarobot.com:127.0.0.1"         # docker 内部的域名解析，总是解析到 127.0.0.1 即可
     command: ["sh", "-c", "/app/entrypoint.sh 2>&1 > /app/start.log"]
 
 networks:

@@ -24,7 +24,7 @@ function build_image() {
 
 image_name=`echo ${PWD##*/}`
 build_image ${image_name} "Dockerfile"
-docker-compose build --no-cache
+docker-compose build
 
 docker image ls | grep "${image_name}"
 echo "finish ."

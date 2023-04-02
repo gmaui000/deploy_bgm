@@ -26,9 +26,3 @@ RUN python -m pip install -r /app/requirements.txt -i  http://pypi.douban.com/si
 EXPOSE 80
 WORKDIR /app
 
-# # 拷贝项目文件
-# COPY ./app /app
-# COPY ./nginx/flask.conf /etc/nginx/conf.d/flask.conf
-# RUN rm -f /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-
-# ENTRYPOINT [ "./entrypoint.sh" ]

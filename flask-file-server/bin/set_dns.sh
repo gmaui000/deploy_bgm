@@ -6,7 +6,7 @@
 # ------------------------
 
 DNS_FILE="/etc/hosts"
-DOMAIN="bgm.cowarobot1.cn"
+DOMAIN="bgm.cowarobot.com"
 LOCAL_IP=`ifconfig en0 | grep 'netmask' | awk '{print $2}'`
 
 # 修改本地 hosts 文件

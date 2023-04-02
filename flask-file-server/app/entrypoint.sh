@@ -3,12 +3,6 @@
 echo "remove the unused default."
 rm -f /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
-echo "start uwsgi."
-# uwsgi --http :9527 -s ./uwsgi.sock --chmod-socket=777 --manage-script-name --mount /uwsgi=main:APP
-#uwsgi --ini uwsgi.ini &
-
-#sleep 1
-
 echo "start nginx."
 # nginx -c /etc/nginx/nginx.conf &
 # service nginx start
@@ -33,8 +27,11 @@ else
 
   echo "Nginx is now running."
 fi
-echo "all done... enter loop."
 
+echo "start uwsgi."
+# uwsgi --http :40100 -s ./uwsgi.sock --chmod-socket=777 --manage-script-name --mount /uwsgi=main:APP
 uwsgi --ini uwsgi.ini
 
+echo "should not be here."
 #while true; do sleep 10; done
+

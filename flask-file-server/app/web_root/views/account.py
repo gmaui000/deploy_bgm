@@ -17,7 +17,7 @@ def login():
         username = request.form.get('user')
         password = request.form.get('pwd')
         if username == settings.LOGIN_USERNAME and \
-                password == settings.LOGIN_PASSWORD:
+            password == settings.LOGIN_PASSWORD :
             session['user'] = username
             return jsonify({"code": 200, "error": ""})
         else:

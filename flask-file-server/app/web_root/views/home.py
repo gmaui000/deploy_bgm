@@ -9,7 +9,7 @@ import os
 import time
 import hashlib
 import json
-import glob
+import glob,shutil
 
 home = Blueprint('home', __name__)
 
@@ -77,10 +77,10 @@ def index(path_uri=''):
     return html
 
 
-@home.route('/getMusicList')
+@home.route('/getMusicList', methods=["POST"])
 def get_music_list():
-    car_type = request.headers.get('car_type')
-    car_number = request.headers.get('car_number')
+    car_type = request.form.get('car_type')
+    car_number = request.form.get('car_number')
     base_dir = settings.BASEDIR
     music_dir_list = [
         f'bgm/{car_type}/{car_number}',
@@ -146,3 +146,41 @@ def _get_filename(file):
 @home.errorhandler(500)
 def error(error):
     return render_template('error_500.html')
+
+
+@home.route('/createdir/<dirname>',methods=['POST'])
+@home.route('/createdir/<path:path>/<dirname>',methods=['POST'])
+def create_dir(dirname, path=None):
+    if not path:
+        real_path = settings.BASEDIR
+    else:
+        real_path = os.path.join(settings.BASEDIR, path)
+    fullpath = os.path.join(real_path,dirname)
+    if os.path.exists(fullpath):
+        return jsonify({"code":304,"info":"目录已经存在"})
+    try:
+        os.makedirs(fullpath)
+    except:
+        return jsonify({"code":500,"info":"创建目录失败"})
+    return jsonify({"code":200,"info":"创建目录成功"})
+
+
+@home.route('/deleteResource/<dirname>',methods=['POST'])
+@home.route('/deleteResource/<path:path>/<dirname>',methods=['POST'])
+def delete_resource(dirname,path=None):
+    if not path:
+        real_path = settings.BASEDIR
+    else:
+        real_path = os.path.join(settings.BASEDIR, path)
+    fullpath = os.path.join(real_path,dirname)
+    print("fullpath : ",fullpath)
+    if not os.path.exists(fullpath):
+        return jsonify({"code":304,"info":"目录已经存在"})
+    try:
+        if os.path.isdir(fullpath):
+            shutil.rmtree(fullpath)
+        elif os.path.isfile(fullpath):
+            os.remove(fullpath)
+    except:
+        return jsonify({"code":500,"info":f'删除目录{dirname}失败'})
+    return jsonify({"code":200,"info":"删除目录成功"})

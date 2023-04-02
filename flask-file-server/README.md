@@ -34,10 +34,11 @@
 2. 可自行修改 [docker-compose.yml](./docker-compose.yml) 中关于服务本身的环境配置
 3. 本地构建镜像： `bin/build.sh` 或 `ps/build.ps1`
 4. 本地运行容器： `bin/run.sh` 或 `ps/run.ps1`
-5. 在 hosts 添加 `{your_IP}  bgm.cowarobot1.cn` 域名解析
-6. 访问 [http://bgm.cowarobot1.cn](http://bgm.cowarobot1.cn)，默认账密为 `cowa / cowa123`
+5. 在 hosts 添加 `{your_IP}  bgm.cowarobot.com` 域名解析
+6. 访问 [http://bgm.cowarobot.com](http://bgm.cowarobot.com)，默认账密为 `cowa / cowa123`
 
-由于 docker 运行的架构模式为 nginx -> uwsgi -> flask，所以无法通过 IP 访问（跨域问题），默认使用 `bgm.cowarobot1.cn` 作为访问入口，需要手动为其添加 DNS 解析，解析到本地、局域网、公网均可。**若要修改你自己的域名/端口，请全局搜索并替换域名/端口，然后使用 [`bin/build.sh`](./bin/build.sh) 重新构建镜像。**
+由于 docker 运行的架构模式为 nginx -> uwsgi -> flask，所以无法通过 IP 访问（跨域问题），默认使用 `bgm.cowarobot.com` 作为访问入口，需要手动为其添加 DNS 解析，解析到本地、局域网、公网均可。**若要修改你自己的域名/端口，请全局搜索并替换域名/端口，然后使用 [`bin/build.sh`](./bin/build.sh) 重新构建镜像。**
+
 
 
 <details>
