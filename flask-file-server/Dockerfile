@@ -23,6 +23,6 @@ RUN locale-gen zh_CN.UTF-8
 COPY ./app/requirements.txt /app/requirements.txt
 RUN python -m pip install -r /app/requirements.txt -i  http://pypi.douban.com/simple --trusted-host pypi.douban.com
 
-EXPOSE 80
+EXPOSE 443
 WORKDIR /app
 

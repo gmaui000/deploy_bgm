@@ -21,7 +21,7 @@ services:
       - ./app:/app
       - ./nginx/flask.conf:/etc/nginx/conf.d/flask.conf
     ports: 
-      - 40100:80
+      - 40100:443
     networks: 
       flask:
         ipv4_address: 172.168.40.2
