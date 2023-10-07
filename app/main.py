@@ -5,7 +5,7 @@
 #   python main.py
 # -----------------------------------------------
 # 通过 uWSGI 运行（可搭配 nginx）：
-#   uwsgi --http :40100 -s /{FULLPATH}/flask-file-server/app/{ANYNAME}.sock  --chmod-socket=777 --manage-script-name --mount /{ANYNAME}=main:APP
+#   uwsgi --http :40100 -s /{FULLPATH}/bgm-server/app/{ANYNAME}.sock  --chmod-socket=777 --manage-script-name --mount /{ANYNAME}=main:APP
 #
 # uWSGI 指引：https://dormousehole.readthedocs.io/en/latest/deploying/uwsgi.html
 # -----------------------------------------------

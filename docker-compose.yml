@@ -1,8 +1,8 @@
 version: '2'
 services:
-  flask-svc:
-    container_name: flask-svc
-    hostname: FLASK_SVC
+  bgmserver:
+    container_name: bgmserver
+    hostname: BGM_SERVER
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -10,7 +10,7 @@ services:
       ENV: production                       # 运行环境
       DEBUG: 'False'                        # 调试模式
       SERVER_NAME: 'bgm.cowarobot.com:40100' # 服务名（不能用 IP，请自行添加本地 hosts，可以解析到本地或云服务器 IP）
-      APPLICATION_NAME: Flask File Server   # 应用名称
+      APPLICATION_NAME: BGM Server   # 应用名称
       LOGIN_USERNAME: cowa                  # 默认登录账号
       LOGIN_PASSWORD: cowa123               # 默认登录密码
       SECRET_KEY: UAV2tFWAuhBRjZEDERAA      # 用于 Cookie 签名，防篡改（默认值为随机字符串，建议为固定值，否则每次重启服务都需要重新登录）
