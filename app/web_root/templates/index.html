@@ -59,7 +59,7 @@
             </div>
             <div class="modal-body">
                 <form id="upload-form" enctype="multipart/form-data">
-                    <input id='file' class="btn btn-info" name="upload_file" type="file" accept=".mp3">
+                    <input id='file' class="btn btn-info" name="upload_file" type="file" accept=".mp3,.wav">
                 </form>
                 <!-- 上传进度： -->
                 <progress></progress>
@@ -182,13 +182,24 @@
             });
         }
         reader.readAsArrayBuffer(file);
-        if(audioContext.sampleRate != 48000) {
-            alert("mp3采样率必须为48000");
-            return;
-        }
-        if(audioContext.destination.channelCount != 2){
-            alert("mp3采样率必须为双声道");
-            return;
+        if(file.name.endsWith('.mp3')) {
+            if(audioContext.sampleRate != 48000) {
+                alert("mp3采样率必须为48000");
+                return;
+            }
+            if(audioContext.destination.channelCount != 2){
+                alert("mp3采样率必须为双声道");
+                return;
+            }
+        } else if (file.name.endsWith('.wav')) {
+            if(audioContext.sampleRate != 24000) {
+                alert("wav采样率必须为24000");
+                return;
+            }
+            if(audioContext.destination.channelCount != 1){
+                alert("mp3采样率必须为单声道");
+                return;
+            }
         }
         var formData = new FormData($('#upload-form')[0]);
         formData.append("upload_path", upload_path);

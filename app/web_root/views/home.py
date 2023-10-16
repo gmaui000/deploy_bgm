@@ -106,6 +106,20 @@ def get_music_list():
             {"name": filename, "url": f'/download/{rel_path}/{filename}', "md5": calc_md5(i)})
     return json.dumps(fileinfo)
 
+@home.route('/getWarningSoundList', methods=["POST"])
+def get_warning_sounds():
+    base_dir = settings.BASEDIR
+    sound_dir = os.path.join(base_dir,'warning-sound')
+    sounds = glob.glob(f'{sound_dir}/*.wav')
+    fileinfo = []
+    for i in sounds:
+        if not os.path.isfile(i):
+            continue
+        filename = os.path.basename(i)
+        fileinfo.append(
+            {"name": filename, "url": f'/download/warning-sound/{filename}', "md5": calc_md5(i)})
+    return json.dumps(fileinfo)
+
 
 @home.route('/download/<filename>')
 @home.route('/download/<path:path>/<filename>')
